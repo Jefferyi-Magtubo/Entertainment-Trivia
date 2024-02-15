@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function Question(props) {
-    return <h1> Question </h1>
+    return (
+        <div>
+            <h1>{props.question}</h1>
+        </div>
+    )
 }

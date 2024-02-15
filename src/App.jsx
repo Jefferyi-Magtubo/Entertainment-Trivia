@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import Question from '/src/Question.jsx'
 // import './App.css'
@@ -26,13 +26,43 @@ export default function App() {
       const res = await fetch(`https://opentdb.com/api.php?amount=5&category=${category}`)
       const data = await res.json()
       console.log(data)
-    }
+      
+      setQuestions(data.results.map((question) => {
+        const answers = [question.correct_answer, ...question.incorrect_answers]
+        console.log(answers)
+        return {
+          question: question.question, 
+          answers: answers.sort(() => Math.random() - 0.5), 
+          correctAnswer: question.correct_answer}
+      }))
+    } 
+
+    const questionElements = questions.map((question) => {
+      return(
+        <Question 
+          question = {question.question}
+          answers = {question.answers}
+          correctAnswer = {question.correctAnswer}
+        />
+      )
+    })
+
+    useEffect(()=> {
+      console.log(questions)
+      console.log(questionElements)
+    }, [questions, questionElements])
 
     return ( 
       quizStatus ?
 
-      <Question /> :
+      // Quiz Page
+      <main className='quizPage'>
+        {questionElements}
+      </main> 
+      
+      :
 
+      // Start Page
       <main className='openingPage'>
         <h1>Entertainment Trivia</h1>
 
@@ -40,7 +70,6 @@ export default function App() {
 
         {/* The API uses numbers to denote different categories. */}
         <select onChange={changeCategory}>
-
           <option value={11}>Film</option>
           <option value={14}>Television</option>
           <option value={12}>Music</option>
@@ -56,5 +85,3 @@ export default function App() {
       
     )
 }
-
-
