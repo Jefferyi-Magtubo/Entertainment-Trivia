@@ -8,6 +8,8 @@ body {
   font-family: "Karla", sans-serif;
   color: #293264;
   background-color: #F5F7FB;
+  margin: 0;
+  padding: 0;
 }
 
 /* Opening Page */
@@ -34,19 +36,21 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+  z-index: -1;
 }
 
 .botBlob {
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: -1;
 }
 
-button.start--quiz, select {
+button, select {
   margin-top: 1.5em;
 }
 
-button.start--quiz {
+button {
   background: #4D5B9E;
   color: #F5F7FB;
   border: none;
@@ -56,7 +60,7 @@ button.start--quiz {
   font-weight: 500;
 }
 
-button.start--quiz:hover {
+button:hover {
   background: #3E497F;
   cursor: pointer;
 }
@@ -71,3 +75,46 @@ select {
 }
 
 /* Quiz Page */
+
+.quizPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  padding: 2em;
+  height: 100vh; 
+  width: 100%; 
+
+}
+
+.question--segment {
+  margin-bottom: 1em;
+}
+
+.question {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.answers {
+  font-size: .4rem;
+  font-weight: 400;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  margin-top: 1.5em;
+}
+
+.answer {
+  border: .79px solid #4D5B9E;
+  padding: .5em;
+}
+
+.answer:hover {
+  cursor: pointer;
+}
+
+hr {
+  margin-top: .5em;
+  color: #DBDEF0;
+}

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import React from 'react'
 import Question from '/src/Question.jsx'
+import {nanoid} from "nanoid"
+
 // import './App.css'
 
 export default function App() {
@@ -43,6 +45,7 @@ export default function App() {
           question = {question.question}
           answers = {question.answers}
           correctAnswer = {question.correctAnswer}
+          key = {nanoid()}
         />
       )
     })
@@ -57,8 +60,12 @@ export default function App() {
 
       // Quiz Page
       <main className='quizPage'>
-        {questionElements}
-      </main> 
+        <div className='questionList'>{questionElements}</div>
+        <button className='finalbtn'>Check answers</button>
+        <img src='src\assets\blobs-yellow.png' className='topBlob'/>
+        <img src='src\assets\blobs-blue.png' className='botBlob'/>
+      </main>
+       
       
       :
 
