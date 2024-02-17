@@ -133,3 +133,29 @@ hr {
 .final--result > h1 {
   display: inline;
 }
+
+/* Larger Screens */
+
+@media (min-width: 1000px) {
+
+
+  hr {
+    margin-top: 1em;
+  }
+
+  .question--segment > h1 {
+    font-size: 1.5rem;
+  }
+
+  .answers > h2 {
+    font-size: .75rem;
+  }
+  
+  .answers {
+    margin-top: 3em;
+  }
+
+  .questionList {
+    margin: 3em 3em 0 3em;
+  }
+}
