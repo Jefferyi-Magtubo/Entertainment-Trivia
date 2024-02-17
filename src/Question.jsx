@@ -7,11 +7,16 @@ export default function Question(props) {
 
     const answerElements = answers.map((answer) => {
         const selectedStyling = {
-            background: answer.isSelected ? "#D6DBF5" : ""
+            background: 
+                props.showAnswers && answer.isRight ? "#94D7A2" :
+                props.showAnswers && !answer.isRight && answer.isSelected ? "#F8BCBC":
+                answer.isSelected ? "#D6DBF5" :
+                ""
         }
     
         return <h2  key={nanoid()} 
-                    className="answer" style={selectedStyling} 
+                    className="answer" style={selectedStyling}
+                    data-right={answer.isRight} 
                     data-answer={JSON.stringify(answer)} 
                     onClick={(event) => props.selectAnswer(event, props.answers)}>
                 {decode(answer.answer)}</h2>

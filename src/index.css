@@ -124,3 +124,12 @@ hr {
   margin-top: .5em;
   color: #DBDEF0;
 }
+
+.result {
+  font-size: 1rem;
+  margin-right: .5em;
+}
+
+.final--result > h1 {
+  display: inline;
+}

@@ -8,6 +8,8 @@ export default function App() {
     // Starting Quiz
     const [quizStatus, changeStatus] = React.useState(false)
 
+    const [showAnswers, toggleAnswers] = React.useState(false)
+
     function startQuiz() {
       changeStatus(oldStatus => !oldStatus)
     }
@@ -22,16 +24,13 @@ export default function App() {
     // Getting Questions
     const [questions, setQuestions] = React.useState([])
 
-    React.useEffect(() => {
-      console.log(questions);
-    }, [questions]);
-
     async function getQuestions() {
       const res = await fetch(`https://opentdb.com/api.php?amount=5&category=${category}`)
       const data = await res.json()
       
       setQuestions(data.results.map((question) => {
-        const answers = [{answer: question.correct_answer, isSelected: false}, ...question.incorrect_answers.map((incorrectAnswer) => ({answer: incorrectAnswer, isSelected: false}))]
+        const answers = [{answer: question.correct_answer, isSelected: false, isRight: true}, 
+                        ...question.incorrect_answers.map((incorrectAnswer) => ({answer: incorrectAnswer, isSelected: false, isRight: false}))]
    
         return {
           question: question.question, 
@@ -51,6 +50,7 @@ export default function App() {
           key = {question.key}
           selectAnswer = {selectAnswer}
           questionkey = {question.key}
+          showAnswers = {showAnswers}
         />
       )
     })
@@ -59,7 +59,6 @@ export default function App() {
     function selectAnswer(event, answers) {
 
       const selectedAnswer = (JSON.parse(event.target.dataset.answer))
-      console.log(selectedAnswer)
 
       const selAnswerIndex = answers.findIndex((answerInArray) => {
         return answerInArray.answer === selectedAnswer.answer
@@ -89,12 +88,9 @@ export default function App() {
 
     const [questionsCorrect, addCorrectQuestions] = React.useState(0)
 
-    React.useEffect(() => {
-      console.log(questionsCorrect);
-    }, [questionsCorrect]);
-
     function displayFinalResult() {
       setEndStatus(true)
+
       questions.forEach(question => {
         question.answers.forEach((answer) => {
           if (answer.answer === question.correctAnswer && answer.isSelected) {
@@ -102,7 +98,17 @@ export default function App() {
           }
         })
       })
+
+      toggleAnswers(true)
     }
+
+    function newQuiz() {
+      changeStatus(false)
+      toggleAnswers(false)
+      setEndStatus(false)
+    }
+
+    // Page Display
 
     return ( 
       quizStatus ?
@@ -113,8 +119,8 @@ export default function App() {
         {quizEndStatus ?
 
         <div className='final--result'>
-          <h1>You scored {questionsCorrect}/5 correct answers</h1>
-          <button className='finalbtn'>Play Again</button> 
+          <h1 className='result'>You scored {questionsCorrect}/5 correct answers</h1>
+          <button className='finalbtn' onClick={() => newQuiz()}>Play Again</button> 
         </div> 
 
         : 
