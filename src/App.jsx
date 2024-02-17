@@ -25,7 +25,7 @@ export default function App() {
     const [questions, setQuestions] = React.useState([])
 
     async function getQuestions() {
-      const res = await fetch(`https://opentdb.com/api.php?amount=5&category=${category}`)
+      const res = await fetch(`https://opentdb.com/api.php?amount=5&type=multiple&category=${category}`)
       const data = await res.json()
       
       setQuestions(data.results.map((question) => {
@@ -86,7 +86,7 @@ export default function App() {
     // End of Quiz
     const [quizEndStatus, setEndStatus] = React.useState(false)
 
-    const [questionsCorrect, addCorrectQuestions] = React.useState(0)
+    const [questionsCorrect, changeCorrectQuestions] = React.useState(0)
 
     function displayFinalResult() {
       setEndStatus(true)
@@ -94,7 +94,7 @@ export default function App() {
       questions.forEach(question => {
         question.answers.forEach((answer) => {
           if (answer.answer === question.correctAnswer && answer.isSelected) {
-            addCorrectQuestions(old => old + 1)
+            changeCorrectQuestions(old => old + 1)
           }
         })
       })
@@ -106,6 +106,7 @@ export default function App() {
       changeStatus(false)
       toggleAnswers(false)
       setEndStatus(false)
+      changeCorrectQuestions(0)
     }
 
     // Page Display

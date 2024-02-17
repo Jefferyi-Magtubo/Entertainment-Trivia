@@ -136,7 +136,7 @@ hr {
 
 /* Larger Screens */
 
-@media (min-width: 1000px) {
+@media (min-width: 900px) {
 
 
   hr {
@@ -152,10 +152,14 @@ hr {
   }
   
   .answers {
-    margin-top: 3em;
+    margin-top: 2em;
   }
 
   .questionList {
-    margin: 3em 3em 0 3em;
+    margin: 2em 3em 0 3em;
+  }
+
+  .finalbtn {
+    margin-top: 0em;
   }
 }
