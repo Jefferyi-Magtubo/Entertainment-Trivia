@@ -101,17 +101,23 @@ select {
   font-weight: 400;
   display: flex;
   gap: 1em;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 1.5em;
 }
 
 .answer {
   border: .79px solid #4D5B9E;
-  padding: .5em;
+  padding: .5em 1em;
+  border-radius: 1em;
 }
 
 .answer:hover {
   cursor: pointer;
+  background: #E0E5FF;
+}
+
+.selected {
+  background: #D6DBF5;
 }
 
 hr {
