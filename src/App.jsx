@@ -127,8 +127,8 @@ export default function App() {
         : 
         
         <button className='finalbtn' onClick={() => displayFinalResult()}>Check answers</button>}
-        <img src='public\blobs-yellow.png' className='topBlob'/>
-        <img src='public\blobs-blue.png' className='botBlob'/>
+        <img src='/public/blobs-yellow.png' className='topBlob'/>
+        <img src='/public/blobs-blue.png' className='botBlob'/>
       </main>
        
       :
@@ -150,8 +150,8 @@ export default function App() {
         <button className='start--quiz' onClick={() => {startQuiz(); getQuestions();}}>Start Quiz</button>
 
         {/* Background Elements */}
-        <img src='public\blobs-yellow.png' className='topBlob'/>
-        <img src='public\blobs-blue.png' className='botBlob'/>
+        <img src='public/blobs-yellow.png' className='topBlob'/>
+        <img src='public/blobs-blue.png' className='botBlob'/>
       </main>
       
     )
